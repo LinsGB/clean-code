@@ -7,27 +7,17 @@ PARAMETRO
 const getFunctionIfExist = (text: string) => {
     const comunFunctionText = getComunFunction(text)
     const modernFunctionText = getModernFunction(text)
-    const modernConstFunctionText = getModernConstFunction(text)
     if (comunFunctionText) {
         return comunFunctionText
     } else if (modernFunctionText) {
         return modernFunctionText
-    } else if (modernConstFunctionText) {
-        return modernConstFunctionText
     }
     return false
 }
 
 const getComunFunction = (text: string) => {
-    const functionRegex = new RegExp('^.*(function[ \e\t]*(\w*)[ \e\t]*\(.*\){(?:[ \t\n\r\f\v]|.)*}).*$')
-    const result = functionRegex.exec(text) || []
-    if (result.length > 0) {
-        return result[1]
-    } else return false
-}
-
-const getModernConstFunction = (text: string) => {
-    const functionRegex = /^.*(const).*$/
+    console.log("COMUN")
+    const functionRegex = /(function[ \e\t]+\w+[ \e\t]*\(.*\)[ \e\t]*{(?:[ \t\n\r\f\v]|.)*})/
     const result = functionRegex.exec(text) || []
     if (result.length > 0) {
         return result[1]
@@ -35,7 +25,7 @@ const getModernConstFunction = (text: string) => {
 }
 
 const getModernFunction = (text: string) => {
-    const functionRegex = /^.*([ \e\t]*.*[ \e\t]*=[ \e\t]*\(.*\)[ \e\t]*=>[ \e\t]*{(?:[ \t\n\r\f\v]|.)*}).*$/
+    const functionRegex = /((?:const)?[ \e\t]*\w+[ \e\t]*=[ \e\t]*\(.*\)[ \e\t]*=>[ \e\t]*{(?:[ \t\n\r\f\v]|.)*})/
     const result = functionRegex.exec(text) || []
     if (result.length > 0) {
         return result[1]

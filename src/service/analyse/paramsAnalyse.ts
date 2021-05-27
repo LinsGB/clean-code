@@ -26,11 +26,10 @@ const paramsQuantityAnalyse = (params: string[]) => {
 }
 
 const paramsSizeAnalyze = (params: string[]) => {
-    let grade = -1
+    let grade = 1
     params.forEach(param => {
-        if(param.length < 11) grade = 1
-        else if (param.length < 16) {
-            grade = grade < 0 ? 0 : grade
+        if (param.length < 16) {
+            grade = 0
         }
     })
     return grade

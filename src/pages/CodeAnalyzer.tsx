@@ -1,32 +1,32 @@
 import React,{ useState } from "react";
-import {getFunctionIfExist} from '../service/functionSpliter'
-import {getParamsIfExist} from '../service/paramsSpliter'
-import {getFunctionNameIfExist} from '../service/functionNameSpliter'
-import {functionNameAnalyse} from '../service/functionNameAnalyse'
-import {functionAnalyse} from '../service/functionAnalyse'
-import {paramsAnalyse} from '../service/paramsAnalyse'
+import {getFunctionIfExist} from '../service/spliter/functionSpliter'
+import {getParamsIfExist} from '../service/spliter/paramsSpliter'
+import {getFunctionName} from '../service/spliter/functionNameSpliter'
+import {functionNameAnalyse} from '../service/analyse/functionNameAnalyse'
+import {functionTypeAnalyse} from '../service/analyse/functionTypeAnalyse'
+import {paramsAnalyse} from '../service/analyse/paramsAnalyse'
 
 function CodeAnalizer() {
   const [text, setText] = useState('');
   
   const onClick = () => {
     let grade = 0
-    const functionText = getFunctionIfExist(text)
+    const functionText = getFunctionIfExist(text) 
+    console.log("functionText => ", functionText)
     const paramsText = getParamsIfExist(text)
-    const functionNameText = getFunctionNameIfExist(text)
+    const functionNameText = getFunctionName(functionText||'')
+    console.log("functionNameText => ", functionNameText)
     if(functionNameText && functionText && paramsText) {
-      grade += functionNameAnalyse(text)
-      grade += functionAnalyse(functionText)
-      grade += paramsAnalyse(paramsText)
+      grade += functionTypeAnalyse(functionText)
     }
-    console.log("GRADE => ", grade)
+    console.log("GRADE =>", grade)
   }
 
   return (
     <div className="App">
-      <title>Fake Hemingway</title>
+      <title>Clean Code</title>
       <div>
-        <h1>Fake Hemingway</h1>
+        <h1>Clean Code</h1>
         <textarea name="" id="text-area" onChange={event => setText(event.target.value)}></textarea>
         <button onClick={() => onClick()}></button>
         <div id="output"></div>
