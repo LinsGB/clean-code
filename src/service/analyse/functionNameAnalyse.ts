@@ -5,11 +5,8 @@ const functionNameAnalyse = (functionName: string) => {
 }
 
 const functionNameSizeAnalyze = (functionName: string) => {
-    let grade = -1
-    if (functionName.length < 11) grade = 1
-    else if (functionName.length < 16) {
-        grade = grade < 0 ? 0 : grade
-    }
+    let grade = 1
+    if (functionName.length > 16) grade = 0
     return grade
 }
 

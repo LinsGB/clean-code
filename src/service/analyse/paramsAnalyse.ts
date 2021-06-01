@@ -13,6 +13,7 @@ const paramsAnalyse = (text: string) => {
 }
 
 const paramsQuantityAnalyse = (params: string[]) => {
+    console.log(params.length)
     switch (params.length){
         case 1:
             return 2
@@ -28,7 +29,7 @@ const paramsQuantityAnalyse = (params: string[]) => {
 const paramsSizeAnalyze = (params: string[]) => {
     let grade = 1
     params.forEach(param => {
-        if (param.length < 16) {
+        if (param.length > 16) {
             grade = 0
         }
     })
