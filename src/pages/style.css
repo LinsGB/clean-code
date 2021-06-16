@@ -21,6 +21,12 @@ textarea {
   color: blue;
 }
 
+#textarea input {
+  border:none;
+  background: transparent;
+  outline: 0;
+}
+
 input {
   margin-top: 5px;
   width: 400px;

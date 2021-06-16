@@ -6,10 +6,10 @@ PARAMETRO
 */
 const getFunctionName = (text: string) => {
     const functionNameRegex = /([a-zA-Z]+)[ \e\t]*(?:\(|=)/
-    const result = functionNameRegex.exec(text) || []
+    const result:any = functionNameRegex.exec(text) || []
     if (result.length > 0) {
-        return result[1]
-    } else return false
+        return {text:result[1], start:parseInt(result.index), end:parseInt(result.index)+result[1].length}
+    } else return ''
 }
 
 export {

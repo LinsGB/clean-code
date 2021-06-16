@@ -13,7 +13,6 @@ const paramsAnalyse = (text: string) => {
 }
 
 const paramsQuantityAnalyse = (params: string[]) => {
-    console.log(params.length)
     switch (params.length){
         case 1:
             return 2
